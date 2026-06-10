@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitrai — Healthcare Referral Intelligence</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,500;0,600;1,400&display=swap');
+
+:root {
+  --teal: #0B6E6E;
+  --teal-dark: #084F4F;
+  --teal-light: #E8F4F4;
+  --teal-mid: #1A9494;
+  --ink: #141920;
+  --ink-mid: #3D4455;
+  --ink-light: #7A8196;
+  --bg: #F6F9FA;
+  --white: #FFFFFF;
+  --border: #DDE4EC;
+  --amber: #C97B1A;
+  --amber-light: #FDF3E3;
+  --green: #1A7A4A;
+  --green-light: #E6F5EE;
+  --section-gap: 96px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(246,249,250,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-family: 'Lora', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--ink); }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-pill {
+  font-size: 12px;
+  background: var(--teal);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 40px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 60px;
+}
+.hero-text { flex: 1; max-width: 560px; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 20px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--teal);
+  display: block;
+}
+.hero h1 {
+  font-family: 'Lora', serif;
+  font-size: clamp(32px, 5vw, 50px);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--teal);
+}
+.hero-sub {
+  font-size: 17px;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero-tag {
+  font-size: 12px;
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  color: var(--ink-mid);
+  background: var(--white);
+}
+
+/* Hero visual */
+.hero-visual {
+  flex: 1;
+  max-width: 440px;
+  position: relative;
+}
+.dashboard-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 32px rgba(11,110,110,0.08);
+}
+.dc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.dc-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+.dc-badge { font-size: 11px; background: var(--green-light); color: var(--green); padding: 3px 10px; border-radius: 99px; font-weight: 500; }
+.dc-stat-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.dc-stat {
+  flex: 1;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.dc-stat-val { font-size: 22px; font-weight: 600; color: var(--teal); line-height: 1; }
+.dc-stat-label { font-size: 11px; color: var(--ink-light); margin-top: 4px; }
+.dc-list { display: flex; flex-direction: column; gap: 8px; }
+.dc-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: 8px;
+}
+.dc-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600; color: var(--teal);
+  flex-shrink: 0;
+}
+.dc-item-text { flex: 1; }
+.dc-item-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+.dc-item-sub { font-size: 11px; color: var(--ink-light); }
+.dc-item-status {
+  font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 99px;
+}
+.status-admitted { background: var(--amber-light); color: var(--amber); }
+.status-treated { background: var(--green-light); color: var(--green); }
+.status-followup { background: var(--teal-light); color: var(--teal); }
+
+/* floating badge */
+.float-badge {
+  position: absolute;
+  bottom: -16px;
+  right: 20px;
+  background: var(--teal);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 99px;
+  box-shadow: 0 4px 16px rgba(11,110,110,0.3);
+}
+
+/* SECTION COMMON */
+.section {
+  padding: var(--section-gap) 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--ink-mid);
+  max-width: 560px;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+
+/* PROBLEM */
+.problem-bg {
+  background: var(--ink);
+  color: white;
+}
+.problem-section {
+  padding: var(--section-gap) 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.problem-section .section-eyebrow { color: var(--teal-mid); }
+.problem-section .section-title { color: white; }
+.problem-section .section-sub { color: rgba(255,255,255,0.6); }
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.problem-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 24px;
+}
+.problem-icon { font-size: 28px; margin-bottom: 12px; }
+.problem-title { font-size: 15px; font-weight: 600; color: white; margin-bottom: 8px; }
+.problem-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+/* HOW IT WORKS */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.step-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px;
+  position: relative;
+}
+.step-num {
+  font-family: 'Lora', serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--teal-light);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.7; }
+
+/* FOR WHOM */
+.audience-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+.audience-card {
+  border-radius: 16px;
+  padding: 32px;
+}
+.audience-card.doctors {
+  background: var(--teal-light);
+  border: 1px solid var(--teal-mid);
+}
+.audience-card.hospitals {
+  background: var(--amber-light);
+  border: 1px solid #E8C77A;
+}
+.audience-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.audience-card.doctors .audience-label { color: var(--teal); }
+.audience-card.hospitals .audience-label { color: var(--amber); }
+.audience-title { font-family: 'Lora', serif; font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 16px; }
+.feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+.feature-list li::before {
+  content: '✓';
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.audience-card.doctors .feature-list li::before { color: var(--teal); }
+.audience-card.hospitals .feature-list li::before { color: var(--amber); }
+
+/* FLOW */
+.flow-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+}
+.flow-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.flow-node {
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+  padding: 24px 16px;
+  position: relative;
+}
+.flow-node::after {
+  content: '→';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--teal-mid);
+  font-weight: 300;
+}
+.flow-node:last-child::after { display: none; }
+.flow-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.flow-node-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+.flow-node-desc { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+
+/* STATS */
+.stats-row {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.stat-item {
+  flex: 1;
+  min-width: 140px;
+  padding: 32px 24px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-val { font-family: 'Lora', serif; font-size: 36px; font-weight: 600; color: var(--teal); line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 12px; color: var(--ink-light); }
+
+/* PILOT */
+.pilot-bg { background: var(--teal-dark); }
+.pilot-section {
+  padding: var(--section-gap) 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.pilot-section .section-eyebrow { color: var(--teal-mid); }
+.pilot-section .section-title { color: white; margin: 0 auto 14px; }
+.pilot-section .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 40px; text-align: center; }
+.pilot-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pilot-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 24px 28px;
+  text-align: left;
+  max-width: 260px;
+  flex: 1;
+  min-width: 200px;
+}
+.pilot-card-title { font-size: 14px; font-weight: 600; color: white; margin-bottom: 8px; }
+.pilot-card-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: gap;
+  gap: 16px;
+}
+.footer-logo { font-family: 'Lora', serif; font-size: 20px; font-weight: 600; color: white; }
+.footer-logo span { color: var(--teal-mid); }
+.footer-note { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { flex-direction: column; padding: 60px 20px 40px; gap: 40px; }
+  .hero-visual { max-width: 100%; }
+  .section, .problem-section, .pilot-section { padding: 60px 20px; }
+  .audience-row { grid-template-columns: 1fr; }
+  .flow-row { flex-direction: column; }
+  .flow-node::after { content: '↓'; right: 50%; transform: translateX(50%); top: auto; bottom: -16px; }
+  .flow-node { padding-bottom: 32px; }
+  footer { flex-direction: column; text-align: center; padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">mitrai<span>.one</span></a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#for-whom">For doctors</a></li>
+    <li><a href="#for-hospitals">For hospitals</a></li>
+    <li><a href="#pilot">Early access</a></li>
+  </ul>
+  <a class="nav-pill" href="#pilot">Join pilot</a>
+</nav>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Healthcare Referral Intelligence</div>
+      <h1>Every patient you refer,<br><em>accounted for.</em></h1>
+      <p class="hero-sub">Mitrai connects doctors and hospitals on a shared referral network — so you always know where your patient is, and hospitals know who's sending them.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">For independent doctors</span>
+        <span class="hero-tag">For private hospitals</span>
+        <span class="hero-tag">Free for doctors</span>
+        <span class="hero-tag">Works on WhatsApp</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dashboard-card">
+        <div class="dc-header">
+          <div class="dc-title">My Referrals — This Month</div>
+          <div class="dc-badge">● Live</div>
+        </div>
+        <div class="dc-stat-row">
+          <div class="dc-stat">
+            <div class="dc-stat-val">24</div>
+            <div class="dc-stat-label">Referred</div>
+          </div>
+          <div class="dc-stat">
+            <div class="dc-stat-val">18</div>
+            <div class="dc-stat-label">Admitted</div>
+          </div>
+          <div class="dc-stat">
+            <div class="dc-stat-val">6</div>
+            <div class="dc-stat-label">Pending</div>
+          </div>
+        </div>
+        <div class="dc-list">
+          <div class="dc-item">
+            <div class="dc-avatar">R</div>
+            <div class="dc-item-text">
+              <div class="dc-item-name">Ramesh K., 54</div>
+              <div class="dc-item-sub">Cardiology · Apollo, Mysuru</div>
+            </div>
+            <span class="dc-item-status status-admitted">Admitted</span>
+          </div>
+          <div class="dc-item">
+            <div class="dc-avatar">P</div>
+            <div class="dc-item-text">
+              <div class="dc-item-name">Priya S., 38</div>
+              <div class="dc-item-sub">Orthopaedics · Manipal, Hubli</div>
+            </div>
+            <span class="dc-item-status status-treated">Treated</span>
+          </div>
+          <div class="dc-item">
+            <div class="dc-avatar">A</div>
+            <div class="dc-item-text">
+              <div class="dc-item-name">Anand M., 67</div>
+              <div class="dc-item-sub">Neurology · Narayana, Bengaluru</div>
+            </div>
+            <span class="dc-item-status status-followup">Follow-up</span>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge">Referred via WhatsApp in 30 sec</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<div class="problem-bg">
+  <div class="problem-section">
+    <div class="section-eyebrow">The problem today</div>
+    <h2 class="section-title">Referrals happen on trust.<br>Everything after that is a black box.</h2>
+    <p class="section-sub">Once a doctor refers a patient and a hospital receives one, both sides are flying blind. No tracking, no feedback, no data.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📋</div>
+        <div class="problem-title">Doctors have no record</div>
+        <div class="problem-desc">Most referrals happen via phone or WhatsApp and are never formally logged. If a patient outcome goes wrong, there's no documentation.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔕</div>
+        <div class="problem-title">No feedback loop</div>
+        <div class="problem-desc">After referring a patient, doctors rarely hear back from the hospital. They don't know if the patient was admitted, treated, or went elsewhere.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <div class="problem-title">Hospitals are guessing</div>
+        <div class="problem-desc">Most hospitals don't know which doctors are referring the most patients, which specialties drive admissions, or why patients choose competitors.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔗</div>
+        <div class="problem-title">No shared network</div>
+        <div class="problem-desc">Doctors and hospitals operate as disconnected islands. There's no platform that connects the referring doctor to the receiving hospital in real time.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="section" style="padding-bottom: 0;" id="for-whom">
+  <div class="section-eyebrow">The opportunity</div>
+  <h2 class="section-title">India's referral network is massive — and completely untracked.</h2>
+  <p class="section-sub">Every day, hundreds of thousands of patients move between clinics and hospitals based on informal referrals. Mitrai brings intelligence to this invisible network.</p>
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-val">1.2M+</div>
+      <div class="stat-label">Registered doctors in India</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">70,000+</div>
+      <div class="stat-label">Private hospitals</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">~60%</div>
+      <div class="stat-label">Hospital admissions via referral</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">0</div>
+      <div class="stat-label">Platforms tracking this today</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOR WHOM -->
+<div class="section">
+  <div class="section-eyebrow">Built for both sides</div>
+  <h2 class="section-title">One platform. Two perspectives.</h2>
+  <div class="audience-row">
+    <div class="audience-card doctors">
+      <div class="audience-label">For Doctors</div>
+      <div class="audience-title">Your referral history, always with you.</div>
+      <ul class="feature-list">
+        <li>Log a referral in under 30 seconds via WhatsApp</li>
+        <li>See real-time patient status at the hospital</li>
+        <li>Maintain a complete, timestamped referral record</li>
+        <li>Medico-legal documentation — always ready</li>
+        <li>Know which hospitals have the best outcomes for your patients</li>
+        <li>Free to use — no subscription required</li>
+      </ul>
+    </div>
+    <div class="audience-card hospitals" id="for-hospitals">
+      <div class="audience-label">For Hospitals</div>
+      <div class="audience-title">Know your referral network like never before.</div>
+      <ul class="feature-list">
+        <li>See which doctors are referring — and how many patients</li>
+        <li>Track referral trends by specialty, geography, and doctor type</li>
+        <li>Identify your top referring doctors and nurture the relationship</li>
+        <li>Understand why referred patients choose competitor hospitals</li>
+        <li>Measure the ROI of your doctor engagement programmes</li>
+        <li>Close the feedback loop — update referring doctors automatically</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);" id="how-it-works">
+  <div class="section">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">Simple for doctors.<br>Powerful for hospitals.</h2>
+    <p class="section-sub">Mitrai is designed around how doctors actually work — not how software engineers think they should.</p>
+
+    <div class="flow-wrap" style="margin-bottom:40px">
+      <div style="font-size:13px;font-weight:600;color:var(--ink-light);margin-bottom:24px;text-transform:uppercase;letter-spacing:0.05em">Doctor flow</div>
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--teal-light)">💬</div>
+          <div class="flow-node-title">Doctor refers</div>
+          <div class="flow-node-desc">Sends a WhatsApp message or fills a quick form with patient name, hospital, and reason</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--teal-light)">📝</div>
+          <div class="flow-node-title">Auto-logged</div>
+          <div class="flow-node-desc">Mitrai creates a timestamped referral record with all details — no manual entry needed</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--teal-light)">🔔</div>
+          <div class="flow-node-title">Hospital updates</div>
+          <div class="flow-node-desc">Doctor receives a notification when the patient is admitted, treated, or discharged</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--teal-light)">📊</div>
+          <div class="flow-node-title">Doctor reviews</div>
+          <div class="flow-node-desc">Full referral history, patient outcomes, and practice insights — in one dashboard</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-wrap">
+      <div style="font-size:13px;font-weight:600;color:var(--ink-light);margin-bottom:24px;text-transform:uppercase;letter-spacing:0.05em">Hospital flow</div>
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--amber-light)">📥</div>
+          <div class="flow-node-title">Referral received</div>
+          <div class="flow-node-desc">Hospital admission desk sees incoming referrals in real time with doctor and patient details</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--amber-light)">✅</div>
+          <div class="flow-node-title">Confirm & update</div>
+          <div class="flow-node-desc">Mark admission status with one tap — automatically notifies the referring doctor</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--amber-light)">📈</div>
+          <div class="flow-node-title">Analytics dashboard</div>
+          <div class="flow-node-desc">Track referral volume by doctor, specialty, geography, and time period</div>
+        </div>
+        <div class="flow-node">
+          <div class="flow-circle" style="background:var(--amber-light)">🤝</div>
+          <div class="flow-node-title">Grow the network</div>
+          <div class="flow-node-desc">Identify top referrers and at-risk relationships — and take action before losing them</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PILOT -->
+<div class="pilot-bg" id="pilot">
+  <div class="pilot-section">
+    <div class="section-eyebrow">Early access</div>
+    <h2 class="section-title" style="max-width:600px">We are running a free 60-day pilot in select cities.</h2>
+    <p class="section-sub">Mitrai is currently in validation. We are onboarding a small group of doctors and hospitals to test the platform — at no cost, with hands-on support from our team.</p>
+    <div class="pilot-cards">
+      <div class="pilot-card">
+        <div class="pilot-card-title">For doctors</div>
+        <div class="pilot-card-desc">Free onboarding, WhatsApp setup, and a personal referral dashboard. We handle everything — you just refer patients as usual.</div>
+      </div>
+      <div class="pilot-card">
+        <div class="pilot-card-title">For hospitals</div>
+        <div class="pilot-card-desc">60-day referral analytics pilot with a live dashboard. See your referral network mapped for the first time — no IT integration required.</div>
+      </div>
+      <div class="pilot-card">
+        <div class="pilot-card-title">Currently in</div>
+        <div class="pilot-card-desc">Bengaluru, Mysuru, Hubli, Mangaluru, and expanding to more cities. Contact us to check availability in your city.</div>
+      </div>
+    </div>
+    <div style="margin-top:40px;font-size:14px;color:rgba(255,255,255,0.6)">
+      To express interest, contact your Mitrai representative or reach us at<br>
+      <strong style="color:white">mitrai.one</strong>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">mitrai<span>.one</span></div>
+  <div class="footer-note">Healthcare Referral Intelligence &nbsp;·&nbsp; India &nbsp;·&nbsp; 2025</div>
+  <div class="footer-note">Built for doctors. Powered by hospitals.</div>
+</footer>
+
+</body>
+</html>
