@@ -1,330 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mitr-AI — Accountability Infrastructure for India</title>
-<meta name="description" content="Mitr-AI builds the intelligent accountability layer and trust infrastructure for India's professional economy — healthcare, manufacturing, and more.">
-<link rel="stylesheet" href="shared.css">
-<style>
-body { background: var(--navy); color: var(--warm-white); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mitr-AI — Accountability Infrastructure for India</title>
+  <meta name="description"
+    content="Mitr-AI builds the intelligent accountability layer and trust infrastructure for India's professional economy — healthcare, manufacturing, and more.">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    body {
+      background: var(--navy);
+      color: var(--warm-white);
+    }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 100px 5% 80px;
-  position: relative; overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 10%, rgba(0,194,178,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(124,58,237,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 50% at 85% 70%, rgba(0,102,204,0.05) 0%, transparent 50%);
-}
-/* Subtle grid */
-.hero-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
-}
-.hero-kicker {
-  background: rgba(0,194,178,0.08);
-  border: 1px solid rgba(0,194,178,0.2);
-  border-radius: 99px; padding: 5px 16px;
-  font-size: 12px; font-weight: 500; color: var(--teal);
-  margin-bottom: 32px; display: inline-block;
-}
-.hero-wordmark {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(64px, 12vw, 130px);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -3px;
-  margin-bottom: 8px;
-  position: relative;
-  display: block;
-}
-.wm-mitr { color: var(--warm-white); }
-.wm-sep {
-  display: inline-block;
-  width: clamp(20px, 3vw, 44px);
-  height: 4px;
-  background: var(--grad-full);
-  border-radius: 2px;
-  margin: 0 4px clamp(8px,1.5vw,18px);
-  vertical-align: middle;
-  animation: sepgrow 2.5s ease-in-out infinite alternate;
-}
-@keyframes sepgrow { from{width:clamp(20px,3vw,44px);opacity:0.8} to{width:clamp(28px,4vw,56px);opacity:1} }
-.wm-ai { background: var(--grad-full); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero-tagline {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(15px, 2vw, 20px);
-  font-weight: 400; color: rgba(242,244,240,0.45);
-  letter-spacing: 0.06em; text-transform: uppercase;
-  margin-bottom: 32px;
-  display: block;
-}
-.hero-desc {
-  font-size: clamp(15px, 2vw, 18px); font-weight: 300;
-  color: rgba(242,244,240,0.6); max-width: 580px;
-  line-height: 1.75; margin: 0 auto 56px;
-}
-.hero-desc strong { color: var(--warm-white); font-weight: 500; }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* PRODUCT CARDS */
-.product-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px; max-width: 900px; width: 100%;
-  margin: 0 auto;
-}
-.product-card {
-  border-radius: 20px; padding: 36px 32px;
-  border: 1px solid var(--border-mid);
-  background: var(--navy-2);
-  text-align: left; text-decoration: none;
-  position: relative; overflow: hidden;
-  transition: transform 0.3s cubic-bezier(.22,1,.36,1), border-color 0.3s;
-  display: block;
-}
-.product-card::before {
-  content: ''; position: absolute; inset: 0;
-  opacity: 0; transition: opacity 0.3s;
-}
-.pc-refer::before { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,194,178,0.08) 0%, transparent 70%); }
-.pc-ops::before { background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,158,11,0.08) 0%, transparent 70%); }
-.product-card:hover { transform: translateY(-4px); }
-.pc-refer:hover { border-color: rgba(0,194,178,0.35); }
-.pc-ops:hover { border-color: rgba(245,158,11,0.35); }
-.product-card:hover::before { opacity: 1; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 10%, rgba(0, 194, 178, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 80%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 50% at 85% 70%, rgba(0, 102, 204, 0.05) 0%, transparent 50%);
+    }
 
-.pc-tag {
-  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  padding: 3px 10px; border-radius: 99px; margin-bottom: 20px; display: inline-block;
-}
-.pc-refer .pc-tag { background: var(--teal-dim); color: var(--teal); }
-.pc-ops .pc-tag { background: var(--amber-dim); color: var(--amber); }
+    /* Subtle grid */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
+    }
 
-.pc-icon { font-size: 36px; margin-bottom: 16px; display: block; }
-.pc-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 26px; font-weight: 700; margin-bottom: 10px;
-  letter-spacing: -0.5px;
-}
-.pc-refer .pc-name { color: var(--warm-white); }
-.pc-ops .pc-name { color: var(--warm-white); }
-.pc-desc { font-size: 13px; color: rgba(242,244,240,0.5); line-height: 1.7; margin-bottom: 24px; }
-.pc-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 600;
-  transition: gap 0.2s;
-}
-.pc-refer .pc-cta { color: var(--teal); }
-.pc-ops .pc-cta { color: var(--amber); }
-.product-card:hover .pc-cta { gap: 12px; }
-.pc-features { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-dark); display: flex; flex-direction: column; gap: 7px; }
-.pc-feat { font-size: 12px; color: rgba(242,244,240,0.4); display: flex; align-items: center; gap: 8px; }
-.pc-feat::before { content: '✓'; font-weight: 700; font-size: 10px; }
-.pc-refer .pc-feat::before { color: var(--teal); }
-.pc-ops .pc-feat::before { color: var(--amber); }
+    .hero-kicker {
+      background: rgba(0, 194, 178, 0.08);
+      border: 1px solid rgba(0, 194, 178, 0.2);
+      border-radius: 99px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--teal);
+      margin-bottom: 32px;
+      display: inline-block;
+    }
 
-/* MISSION */
-.mission-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
-.mission-text {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(22px, 3.5vw, 38px);
-  font-weight: 700; line-height: 1.25;
-  letter-spacing: -0.5px;
-  color: var(--warm-white);
-  max-width: 780px;
-}
-.mission-text .hl-teal { background: var(--grad-teal); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.mission-text .hl-amber { background: var(--grad-amber); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.mission-body { font-size: 16px; color: rgba(242,244,240,0.5); line-height: 1.8; max-width: 620px; margin-top: 20px; font-weight: 300; }
+    .hero-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(64px, 12vw, 130px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      margin-bottom: 8px;
+      position: relative;
+      display: block;
+    }
 
-/* VERTICALS */
-.verticals { padding: 0 5% 100px; max-width: 1100px; margin: 0 auto; }
-.vertical-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
-.vert-card {
-  background: var(--navy-2); border: 1px solid var(--border-dark);
-  border-radius: 16px; padding: 24px;
-  transition: border-color 0.3s;
-}
-.vert-card:hover { border-color: var(--border-mid); }
-.vert-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: rgba(242,244,240,0.2); margin-bottom: 12px; }
-.vert-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--warm-white); margin-bottom: 8px; }
-.vert-desc { font-size: 12px; color: rgba(242,244,240,0.4); line-height: 1.65; }
-.vert-status { margin-top: 14px; font-size: 11px; font-weight: 600; }
-.vs-live { color: var(--teal); }
-.vs-next { color: var(--amber); }
-.vs-future { color: rgba(242,244,240,0.25); }
+    .wm-mitr {
+      color: var(--warm-white);
+    }
 
-/* PHILOSOPHY */
-.philosophy { background: var(--navy-2); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); }
-.phil-inner { max-width: 1100px; margin: 0 auto; padding: 80px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.phil-quote {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(20px, 3vw, 32px);
-  font-weight: 700; line-height: 1.3;
-  color: var(--warm-white); letter-spacing: -0.3px;
-}
-.phil-quote em { font-style: italic; color: var(--teal); }
-.phil-points { display: flex; flex-direction: column; gap: 20px; }
-.phil-point { display: flex; gap: 14px; }
-.phil-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 6px; }
-.phil-point-title { font-size: 14px; font-weight: 600; color: var(--warm-white); margin-bottom: 3px; }
-.phil-point-desc { font-size: 13px; color: rgba(242,244,240,0.45); line-height: 1.6; }
+    .wm-sep {
+      display: inline-block;
+      width: clamp(20px, 3vw, 44px);
+      height: 4px;
+      background: var(--grad-full);
+      border-radius: 2px;
+      margin: 0 4px clamp(8px, 1.5vw, 18px);
+      vertical-align: middle;
+      animation: sepgrow 2.5s ease-in-out infinite alternate;
+    }
 
-@media (max-width: 768px) {
-  .product-grid { grid-template-columns: 1fr; }
-  .vertical-row { grid-template-columns: 1fr; }
-  .phil-inner { grid-template-columns: 1fr; gap: 40px; }
-}
-</style>
+    @keyframes sepgrow {
+      from {
+        width: clamp(20px, 3vw, 44px);
+        opacity: 0.8
+      }
+
+      to {
+        width: clamp(28px, 4vw, 56px);
+        opacity: 1
+      }
+    }
+
+    .wm-ai {
+      background: var(--grad-full);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(15px, 2vw, 20px);
+      font-weight: 400;
+      color: rgba(242, 244, 240, 0.45);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 300;
+      color: rgba(242, 244, 240, 0.6);
+      max-width: 580px;
+      line-height: 1.75;
+      margin: 0 auto 56px;
+    }
+
+    .hero-desc strong {
+      color: var(--warm-white);
+      font-weight: 500;
+    }
+
+    /* PRODUCT CARDS */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid var(--border-mid);
+      background: var(--navy-2);
+      text-align: left;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.22, 1, .36, 1), border-color 0.3s;
+      display: block;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .pc-refer::before {
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 194, 178, 0.08) 0%, transparent 70%);
+    }
+
+    .pc-ops::before {
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pc-refer:hover {
+      border-color: rgba(0, 194, 178, 0.35);
+    }
+
+    .pc-ops:hover {
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .pc-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .pc-refer .pc-tag {
+      background: var(--teal-dim);
+      color: var(--teal);
+    }
+
+    .pc-ops .pc-tag {
+      background: var(--amber-dim);
+      color: var(--amber);
+    }
+
+    .pc-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .pc-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .pc-refer .pc-name {
+      color: var(--warm-white);
+    }
+
+    .pc-ops .pc-name {
+      color: var(--warm-white);
+    }
+
+    .pc-desc {
+      font-size: 13px;
+      color: rgba(242, 244, 240, 0.5);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .pc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: gap 0.2s;
+    }
+
+    .pc-refer .pc-cta {
+      color: var(--teal);
+    }
+
+    .pc-ops .pc-cta {
+      color: var(--amber);
+    }
+
+    .product-card:hover .pc-cta {
+      gap: 12px;
+    }
+
+    .pc-features {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .pc-feat {
+      font-size: 12px;
+      color: rgba(242, 244, 240, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pc-feat::before {
+      content: '✓';
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    .pc-refer .pc-feat::before {
+      color: var(--teal);
+    }
+
+    .pc-ops .pc-feat::before {
+      color: var(--amber);
+    }
+
+    /* MISSION */
+    .mission-section {
+      padding: 100px 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .mission-text {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(22px, 3.5vw, 38px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      color: var(--warm-white);
+      max-width: 780px;
+    }
+
+    .mission-text .hl-teal {
+      background: var(--grad-teal);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mission-text .hl-amber {
+      background: var(--grad-amber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mission-body {
+      font-size: 16px;
+      color: rgba(242, 244, 240, 0.5);
+      line-height: 1.8;
+      max-width: 620px;
+      margin-top: 20px;
+      font-weight: 300;
+    }
+
+    /* VERTICALS */
+    .verticals {
+      padding: 0 5% 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .vertical-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .vert-card {
+      background: var(--navy-2);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.3s;
+    }
+
+    .vert-card:hover {
+      border-color: var(--border-mid);
+    }
+
+    .vert-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(242, 244, 240, 0.2);
+      margin-bottom: 12px;
+    }
+
+    .vert-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--warm-white);
+      margin-bottom: 8px;
+    }
+
+    .vert-desc {
+      font-size: 12px;
+      color: rgba(242, 244, 240, 0.4);
+      line-height: 1.65;
+    }
+
+    .vert-status {
+      margin-top: 14px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .vs-live {
+      color: var(--teal);
+    }
+
+    .vs-next {
+      color: var(--amber);
+    }
+
+    .vs-future {
+      color: rgba(242, 244, 240, 0.25);
+    }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .phil-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .phil-quote {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--warm-white);
+      letter-spacing: -0.3px;
+    }
+
+    .phil-quote em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .phil-points {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .phil-point {
+      display: flex;
+      gap: 14px;
+    }
+
+    .phil-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .phil-point-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--warm-white);
+      margin-bottom: 3px;
+    }
+
+    .phil-point-desc {
+      font-size: 13px;
+      color: rgba(242, 244, 240, 0.45);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vertical-row {
+        grid-template-columns: 1fr;
+      }
+
+      .phil-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="m-nav" id="nav">
-  <a class="nav-logo" href="index.html">Mitr<span class="logo-sep">-</span><span class="logo-ai">AI</span></a>
-  <ul class="nav-links">
-    <li><a href="#mission">Our mission</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#verticals">Verticals</a></li>
-  </ul>
-  <a class="nav-pill" href="refer.html">Explore Refer →</a>
-</nav>
+  <nav class="m-nav" id="nav">
+    <a class="nav-logo" href="index.html">Mitr<span class="logo-sep">-</span><span class="logo-ai">AI</span></a>
+    <ul class="nav-links">
+      <li><a href="#mission">Our mission</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#verticals">Verticals</a></li>
+    </ul>
+    <a class="nav-pill" href="refer.html">Explore Refer →</a>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-kicker reveal">Accountability infrastructure for India</div>
-  <h1 class="reveal d1">
-    <span class="hero-wordmark">
-      <span class="wm-mitr">Mitr</span><span class="wm-sep"></span><span class="wm-ai">AI</span>
-    </span>
-    <span class="hero-tagline">Your intelligent accountability partner</span>
-  </h1>
-  <p class="hero-desc reveal d2">
-    India's professional economy runs on <strong>informal relationships</strong> — referrals, handshakes, WhatsApp chains, and Excel sheets prone to manual entry gaps. Mitr-AI builds the <strong>accountability layer</strong> that makes these relationships transparent, trackable, and trustworthy.
-  </p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-kicker reveal">Accountability infrastructure for India</div>
+    <h1 class="reveal d1">
+      <span class="hero-wordmark">
+        <span class="wm-mitr">Mitr</span><span class="wm-sep"></span><span class="wm-ai">AI</span>
+      </span>
+      <span class="hero-tagline">Your intelligent accountability partner</span>
+    </h1>
+    <p class="hero-desc reveal d2">
+      India's professional economy runs on <strong>informal relationships</strong> — referrals, handshakes, WhatsApp
+      chains, and Excel sheets prone to manual entry gaps. Mitr-AI builds the <strong>accountability layer</strong> that
+      makes these relationships transparent, trackable, and trustworthy.
+    </p>
 
-  <div id="products" class="product-grid reveal d3">
-    <a class="product-card pc-refer" href="refer.html">
-      <span class="pc-tag">Live · Healthcare</span>
-      <span class="pc-icon">🏥</span>
-      <div class="pc-name">Mitr-AI Refer</div>
-      <div class="pc-desc">Referral accountability for doctors, hospitals, and diagnostic centres. Replace informal tracking with a zero-trust, mutual flagging platform.</div>
-      <div class="pc-features">
-        <div class="pc-feat">Doctor referral log — complete audit trail</div>
-        <div class="pc-feat">Hospital & diagnostic referral analytics</div>
-        <div class="pc-feat">Zero financial data stored</div>
+    <div id="products" class="product-grid reveal d3">
+      <a class="product-card pc-refer" href="refer.html">
+        <span class="pc-tag">Live · Healthcare</span>
+        <span class="pc-icon">🏥</span>
+        <div class="pc-name">Mitr-AI Refer</div>
+        <div class="pc-desc">Referral accountability for doctors, hospitals, and diagnostic centres. Replace informal
+          logging with a zero-trust, mutual acknowledgement platform.</div>
+        <div class="pc-features">
+          <div class="pc-feat">Doctor referral log — complete audit trail</div>
+          <div class="pc-feat">Hospital & diagnostic operational insights</div>
+          <div class="pc-feat">Privacy-first architecture</div>
+        </div>
+        <div class="pc-cta" style="margin-top:24px">Explore Mitr-AI Refer →</div>
+      </a>
+
+      <a class="product-card pc-ops" href="ops.html">
+        <span class="pc-tag">Coming Soon · Manufacturing</span>
+        <span class="pc-icon">🏭</span>
+        <div class="pc-name">Mitr-AI Ops</div>
+        <div class="pc-desc">Operational accountability for manufacturing plants. Batch tracking, QC sign-off,
+          cold-chain monitoring, and supply chain visibility — in one dashboard.</div>
+        <div class="pc-features">
+          <div class="pc-feat">Multi-role dashboards: plant, QC, logistics, HQ</div>
+          <div class="pc-feat">Batch traceability from raw material to dispatch</div>
+          <div class="pc-feat">Live SLA tracking and breach alerts</div>
+        </div>
+        <div class="pc-cta" style="margin-top:24px">Explore Mitr-AI Ops →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission-section" id="mission">
+    <div class="eyebrow reveal" style="color:rgba(242,244,240,0.3)">Why we exist</div>
+    <div class="mission-text reveal d1" style="margin-top:16px">
+      India's informal economy is worth <span class="hl-teal">trillions of rupees.</span> It runs on trust,
+      relationships, and <span class="hl-amber">zero accountability infrastructure.</span>
+    </div>
+    <p class="mission-body reveal d2">
+      From a doctor who refers 20 patients a week with no record, to a factory floor where batch quality depends on a
+      handwritten log — critical professional workflows happen outside any formal system. Not because people don't care.
+      Because no platform was built for how India actually works. Mitr-AI is that platform.
+    </p>
+  </section>
+
+  <!-- VERTICALS -->
+  <section class="verticals" id="verticals">
+    <div class="eyebrow reveal" style="color:rgba(242,244,240,0.3)">Where we operate</div>
+    <div class="vertical-row">
+      <div class="vert-card reveal">
+        <div class="vert-num">01</div>
+        <div class="vert-name">Healthcare</div>
+        <div class="vert-desc">Referral accountability between doctors, hospitals, and diagnostic centres. Mutual
+          flagging without financial exposure.</div>
+        <div class="vert-status vs-live">● Live — Mitr-AI Refer</div>
       </div>
-      <div class="pc-cta" style="margin-top:24px">Explore Mitr-AI Refer →</div>
-    </a>
-
-    <a class="product-card pc-ops" href="ops.html">
-      <span class="pc-tag">Coming Soon · Manufacturing</span>
-      <span class="pc-icon">🏭</span>
-      <div class="pc-name">Mitr-AI Ops</div>
-      <div class="pc-desc">Operational accountability for manufacturing plants. Batch tracking, QC sign-off, cold-chain monitoring, and supply chain visibility — in one dashboard.</div>
-      <div class="pc-features">
-        <div class="pc-feat">Multi-role dashboards: plant, QC, logistics, HQ</div>
-        <div class="pc-feat">Batch traceability from raw material to dispatch</div>
-        <div class="pc-feat">Live SLA tracking and breach alerts</div>
+      <div class="vert-card reveal d1">
+        <div class="vert-num">02</div>
+        <div class="vert-name">Manufacturing</div>
+        <div class="vert-desc">Operational visibility for production plants — batch tracking, QC, cold chain, and supply
+          chain in one connected system.</div>
+        <div class="vert-status vs-next">◐ In development — Mitr-AI Ops</div>
       </div>
-      <div class="pc-cta" style="margin-top:24px">Explore Mitr-AI Ops →</div>
-    </a>
-  </div>
-</section>
+      <div class="vert-card reveal d2">
+        <div class="vert-num">03</div>
+        <div class="vert-name">Incentive Networks</div>
+        <div class="vert-desc">Accountability for informal incentive programmes — field sales, channel partners, and
+          distributor networks where payments are untracked.</div>
+        <div class="vert-status vs-future">○ Roadmap</div>
+      </div>
+    </div>
+  </section>
 
-<!-- MISSION -->
-<section class="mission-section" id="mission">
-  <div class="eyebrow reveal" style="color:rgba(242,244,240,0.3)">Why we exist</div>
-  <div class="mission-text reveal d1" style="margin-top:16px">
-    India's informal economy is worth <span class="hl-teal">trillions of rupees.</span> It runs on trust, relationships, and <span class="hl-amber">zero accountability infrastructure.</span>
-  </div>
-  <p class="mission-body reveal d2">
-    From a doctor who refers 20 patients a week with no record, to a factory floor where batch quality depends on a handwritten log — critical professional workflows happen outside any formal system. Not because people don't care. Because no platform was built for how India actually works. Mitr-AI is that platform.
-  </p>
-</section>
-
-<!-- VERTICALS -->
-<section class="verticals" id="verticals">
-  <div class="eyebrow reveal" style="color:rgba(242,244,240,0.3)">Where we operate</div>
-  <div class="vertical-row">
-    <div class="vert-card reveal">
-      <div class="vert-num">01</div>
-      <div class="vert-name">Healthcare</div>
-      <div class="vert-desc">Referral accountability between doctors, hospitals, and diagnostic centres. Mutual flagging without financial exposure.</div>
-      <div class="vert-status vs-live">● Live — Mitr-AI Refer</div>
-    </div>
-    <div class="vert-card reveal d1">
-      <div class="vert-num">02</div>
-      <div class="vert-name">Manufacturing</div>
-      <div class="vert-desc">Operational visibility for production plants — batch tracking, QC, cold chain, and supply chain in one connected system.</div>
-      <div class="vert-status vs-next">◐ In development — Mitr-AI Ops</div>
-    </div>
-    <div class="vert-card reveal d2">
-      <div class="vert-num">03</div>
-      <div class="vert-name">Incentive Networks</div>
-      <div class="vert-desc">Accountability for informal incentive programmes — field sales, channel partners, and distributor networks where payments are untracked.</div>
-      <div class="vert-status vs-future">○ Roadmap</div>
-    </div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<div class="philosophy" id="philosophy">
-  <div class="phil-inner">
-    <div class="phil-quote reveal">
-      "We don't replace the relationships.<br>We give them a <em>memory.</em>"
-    </div>
-    <div class="phil-points">
-      <div class="phil-point reveal">
-        <div class="phil-dot"></div>
-        <div>
-          <div class="phil-point-title">Zero trust by design</div>
-          <div class="phil-point-desc">Neither party sees what the other earns or manages internally. Accountability without exposure.</div>
+  <!-- PHILOSOPHY -->
+  <div class="philosophy" id="philosophy">
+    <div class="phil-inner">
+      <div class="phil-quote reveal">
+        "We don't replace the relationships.<br>We give them a <em>memory.</em>"
+      </div>
+      <div class="phil-points">
+        <div class="phil-point reveal">
+          <div class="phil-dot"></div>
+          <div>
+            <div class="phil-point-title">Zero trust by design</div>
+            <div class="phil-point-desc">Neither party sees what the other earns or manages internally. Accountability
+              without exposure.</div>
+          </div>
+        </div>
+        <div class="phil-point reveal d1">
+          <div class="phil-dot" style="background:var(--amber)"></div>
+          <div>
+            <div class="phil-point-title">Each product works independently</div>
+            <div class="phil-point-desc">Every Mitr-AI product delivers value on its own. When parties connect, they get
+              more — but neither side is held hostage to the other's adoption.</div>
+          </div>
+        </div>
+        <div class="phil-point reveal d2">
+          <div class="phil-dot" style="background:var(--violet)"></div>
+          <div>
+            <div class="phil-point-title">Built for how India works</div>
+            <div class="phil-point-desc">Not a western SaaS tool translated for India. Designed from the ground up for
+              the realities of Indian professional and commercial relationships.</div>
+          </div>
         </div>
       </div>
-      <div class="phil-point reveal d1">
-        <div class="phil-dot" style="background:var(--amber)"></div>
-        <div>
-          <div class="phil-point-title">Each product works independently</div>
-          <div class="phil-point-desc">Every Mitr-AI product delivers value on its own. When parties connect, they get more — but neither side is held hostage to the other's adoption.</div>
-        </div>
-      </div>
-      <div class="phil-point reveal d2">
-        <div class="phil-dot" style="background:var(--violet)"></div>
-        <div>
-          <div class="phil-point-title">Built for how India works</div>
-          <div class="phil-point-desc">Not a western SaaS tool translated for India. Designed from the ground up for the realities of Indian professional and commercial relationships.</div>
-        </div>
-      </div>
     </div>
   </div>
-</div>
 
-<footer class="m-footer">
-  <a class="footer-logo" href="index.html">Mitr<span class="logo-sep">-</span><span class="logo-ai">AI</span></a>
-  <div class="footer-links">
-    <a href="refer.html">Mitr-AI Refer</a>
-    <a href="ops.html">Mitr-AI Ops</a>
-    <a href="#">Contact</a>
-  </div>
-  <div class="footer-note">© 2025 Mitr-AI · DPDP Compliant · Encrypted at Rest & Transit · mitrai.one</div>
-</footer>
+  <footer class="m-footer">
+    <a class="footer-logo" href="index.html">Mitr<span class="logo-sep">-</span><span class="logo-ai">AI</span></a>
+    <div class="footer-links">
+      <a href="refer.html">Mitr-AI Refer</a>
+      <a href="ops.html">Mitr-AI Ops</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-note">© 2026 Mitr-AI · DPDP Compliant · Encrypted at Rest & Transit · mitrai.one</div>
+  </footer>
 
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-const io = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const io = new IntersectionObserver(e => e.forEach(x => x.isIntersecting && x.target.classList.add('visible')), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </body>
+
 </html>
